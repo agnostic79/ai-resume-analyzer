@@ -58,6 +58,9 @@ const Upload = () => {
       jobDescription,
       feedback: "",
     };
+    await kv.set(`resume:${uuid}`, JSON.stringify(data));
+
+    setStatusText("Analyzing...");
 
     const feedback = await ai.feedback(uploadedFile.path, prepareInstructions({ jobTitle, jobDescription }));
     if (!feedback) return setStatusText("Error: Failed to analyze resume");
@@ -69,6 +72,8 @@ const Upload = () => {
     await kv.set(`resume:${uuid}`, JSON.stringify(data));
     setStatusText("Analysis complete, redirecting...");
     console.log(data);
+
+    navigate(`/resume/${uuid}`);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
