@@ -148,3 +148,8 @@ export const prepareInstructions = ({ jobTitle, jobDescription }: { jobTitle: st
   Provide the feedback using the following format: ${AIResponseFormat}
   Return the analysis as a JSON object, without any other text and without the backticks.
   Do not include any other text or comments.`;
+
+export const SCORE_VALUE = {
+  high: 69,
+  mid: 49,
+} as const;
